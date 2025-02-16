@@ -1,10 +1,16 @@
 import React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import { DUMMY_NEWS } from "@/dummy-news";
+import { notFound } from "next/navigation";
 
 const page = ({ params }) => {
   const newSlug = params.slug;
   const newsId = DUMMY_NEWS.find((news) => news.slug === newSlug);
+
+  if (!newsId) {
+    notFound();
+  }
+
   return (
     <article className="news-article">
       <header>
